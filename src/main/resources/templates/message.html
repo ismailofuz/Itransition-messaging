@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js" integrity="sha512-LhccdVNGe2QMEfI3x4DVV3ckMRe36TfydKss6mJpdHjNFiV07dFpS2xzeZedptKZrwxfICJpez09iNioiSZ3hA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <style>
+    body {
+      font-family: 'Lato', sans-serif;
+    }
+
+    #back{
+      padding:0.3rem 0.75rem;
+      cursor:pointer;
+      margin:1rem;
+      border:2px solid #0033ff;
+      border-radius: 0.25rem;
+      width:auto;
+      display:inline-block;
+      color:#0033ff
+    }
+
+    #wrapper{
+      display: flex;
+      justify-content:space-between;
+      padding:0 1rem;
+    }
+
+    .container{
+      max-width: 80%;
+      margin:1rem auto
+      }
+  </style>
+</head>
+
+<body>
+<div id="back">
+  <a href="/"><span class="material-symbols-outlined">
+arrow_back
+</span></a>
+</div>
+  <div class="container">
+
+    <h1 id="sender" th:text="${message.senderName}">Username</h1>
+    <hr>
+    <h2 id="wrapper">
+      <span id="title"  th:text="${message.title}">Title</span>
+      <span id="time" th:text="${message.sentTime}">12:45</span>
+    </h2>
+    <hr>
+    <h5 id="content" th:text="${message.content}">
+      Message
+    </h5>
+
+  </div>
+
+<script>
+  let converter = new showdown.Converter();
+  let md = $("#content").text();
+  let html = converter.makeHtml(md);
+  $("#content").html(html)
+</script>
+
+</body>
+
+</html>
